@@ -1,14 +1,17 @@
 const notes = require("express").Router();
 
 const { v4: uuidv4 } = require("uuid");
-const { readAndAppend, readFromFile } = require("../helpers/fsFunctions");
+const {
+  readAndAppend,
+  readFromFile,
+  deleteNote,
+} = require("../helpers/fsFunctions");
 
 notes.get("/", (req, res) =>
   readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)))
 );
 
 notes.post("/", (req, res) => {
-  console.log(req.body);
   const { title, text } = req.body;
 
   if (title && text) {
@@ -28,6 +31,13 @@ notes.post("/", (req, res) => {
   } else {
     res.json("Error in posting note");
   }
+});
+
+notes.delete("/:id", (req, res) => {
+  const noteId = req.params.id;
+  deleteNote(noteId, "./db/db.json");
+
+  res.json({ message: "Note deleted successfully" });
 });
 
 module.exports = notes;
