@@ -6,6 +6,7 @@ const util = require("util");
 // Promise version of fs.readFile
 const readFromFile = util.promisify(fs.readFile);
 
+// Writes to file as string
 const writeToFile = (destination, content) =>
   fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
     err
@@ -13,6 +14,7 @@ const writeToFile = (destination, content) =>
       : console.info(`\nNew note written to ${destination}`)
   );
 
+// reads from file and parses, then writes file again with new content
 const readAndAppend = (content, file) => {
   fs.readFile(file, "utf8", (err, data) => {
     if (err) {
@@ -25,6 +27,7 @@ const readAndAppend = (content, file) => {
   });
 };
 
+// deletes a note by reading the file, finding the note with the id and filtering it out and rewriting the file
 const deleteNote = (noteId, filePath) => {
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {

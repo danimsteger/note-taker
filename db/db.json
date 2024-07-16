@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "title": "Mow the Lawn",
+        "text": "by the end of the week!",
+        "id": "5c99f62f-4851-4e23-8ebd-85e8ac4c206b"
+    },
+    {
+        "title": "Make Dinner",
+        "text": "today!!",
+        "id": "bedddc5b-b8ed-43c8-87b5-1e2b7e61a9df"
+    }
+]

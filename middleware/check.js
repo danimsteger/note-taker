@@ -1,3 +1,5 @@
+// Creates log statements to show what methods are being done and where they are being done
+
 const check = (req, res, next) => {
   switch (req.method) {
     case "GET": {
